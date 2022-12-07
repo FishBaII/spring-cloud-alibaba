@@ -1,0 +1,16 @@
+server:
+  port: 8302
+
+spring:
+  profiles:
+    # 环境配置
+#    active: dev
+  application:
+    name: consumer-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+feign:
+  hystrix:
+    enabled: true

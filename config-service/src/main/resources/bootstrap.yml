@@ -1,0 +1,28 @@
+server:
+  port: 8303
+
+spring:
+  profiles:
+    active: dev
+  # 环境配置
+  application:
+    name: config-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+
+
+#test
+config:
+  version: 0.0.1
+
+
+#config:
+#  info: this is config-service
+#  version: 0.0.2
+
+#  ${spring.application.name}-${profile}.${file-extension:properties}
