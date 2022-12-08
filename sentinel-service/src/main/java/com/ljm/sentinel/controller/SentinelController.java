@@ -23,7 +23,7 @@ public class SentinelController {
     }
 
     @GetMapping("/relate")
-    @SentinelResource(value = "relate", blockHandler = "myBlockHandle")
+    @SentinelResource(value = "relate", blockHandler = "myBlockHandler")
     public String relateTest() throws InterruptedException {
 
         Thread.sleep(10 * 1000);
@@ -31,19 +31,22 @@ public class SentinelController {
 
     }
 
-    @GetMapping("/hotKey")
-    @SentinelResource(value = "hotkey", blockHandler = "myBlockHandle")
-    public String hotKey(@RequestParam(required = false) String t1, @RequestParam(required = false) String t2){
+    @GetMapping("/hotkey")
+    @SentinelResource(value = "hotkey",blockHandler = "myBlockHandler1")
+    public String hotkeyTest(Integer goodId, String userType){
+        return "goodId: " + goodId + " userType: " + userType;
+    }
 
-        System.out.println("hotKey entering");
-        return "hotKey";
+    //custom Block Handle
+    public String myBlockHandler(BlockException blockException){
+        System.out.println("my blocker!");
+        return "myBlockHandler";
 
     }
 
     //custom Block Handle
-    public String myBlockHandle(BlockException blockException){
+    public String myBlockHandler1(Integer goodId, String userType, BlockException blockException){
         System.out.println("my blocker!");
-        return "myBlockHandle";
-
+        return "myBlockHandler";
     }
 }
